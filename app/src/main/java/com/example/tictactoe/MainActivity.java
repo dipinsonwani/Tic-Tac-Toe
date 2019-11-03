@@ -2,6 +2,7 @@ package com.example.tictactoe;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -165,4 +166,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         updatePointsText();
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("roundCount",roundCount );
+        outState.putInt("player1Points",Player1Points);
+        outState.putInt("player2Points",Player2Points);
+        outState.putBoolean("Player1turn",player1_turn);
+
+
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        roundCount=savedInstanceState.getInt("roundCount");
+        Player1Points=savedInstanceState.getInt("Player1points");
+        Player2Points=savedInstanceState.getInt("Player2points");
+        player1_turn=savedInstanceState.getBoolean("Player1turn");
+    }
 }
+
